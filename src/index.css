@@ -1,0 +1,9 @@
+body {
+    min-height: 100vh;
+    background-color: olivedrab;
+    margin: 0;
+}
+
+.text_center{
+    text-align: center;
+}
