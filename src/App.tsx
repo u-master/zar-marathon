@@ -1,18 +1,16 @@
 import React from 'react';
-import cn from 'classnames';
 
-import './index.css';
 import styles from './App.module.scss';
 
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 
 const App = () => (
-  <>
+  <div className={styles.app}>
     <Header />
-    <div className={cn(styles.header, 'text_center')}>Application started!</div>;
+    <div>Application started!</div>
     <Footer />
-  </>
+  </div>
 );
 
 export default App;
