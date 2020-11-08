@@ -7,9 +7,11 @@
   min-height: 100vh;
   font-size: 2em;
   background: linear-gradient(180deg, $third 0%, $primary 100%);
+  overflow: hidden;
 }
 
 .layout {
   width: 100%;
-  padding-left: 157px;
+  margin-top: 136px;
+  max-width: 1280px;
 }

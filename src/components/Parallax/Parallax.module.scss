@@ -7,30 +7,40 @@
 
 .smallPokeBall {
   position: absolute;
+  width: 180px;
+  height: 180px;
   top: 1%;
   left: 1%;
 }
 
 .cloud {
   position: absolute;
+  width: 233px;
+  height: 116px;
   left: 12.31%;
   bottom: 39.22%;
 }
 
 .cloudBig {
   position: absolute;
+  width: 352px;
+  height: 173px;
   left: 49.86%;
   top: -3%;
 }
 
 .pokeBall {
   position: absolute;
-  top: 24.38%;
+  width: 316px;
+  height: 316px;
+  top: -4.38%;
   right: -12%;
 }
 
 .pikachu {
   position: absolute;
+  width: 648px;
+  height: 648px;
   top: 0%;
   left: 4.11%;
 }

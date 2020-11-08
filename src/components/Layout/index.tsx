@@ -7,7 +7,7 @@ interface LayoutProps {
   className: string;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children, className }) => (
+const Layout: React.FC<LayoutProps> = ({ children, className = null }) => (
   <div className={cn(className, styles.root)}>{children}</div>
 );
 
