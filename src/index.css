@@ -1,9 +1,8 @@
-body {
-    min-height: 100vh;
-    background-color: olivedrab;
-    margin: 0;
-}
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap');
 
-.text_center{
-    text-align: center;
+body {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f5db13 0%, #f2b807 100%);
+  margin: 0;
+  font-family: 'Karla', sans-serif;
 }
