@@ -1,16 +1,7 @@
 import React from 'react';
 
-import styles from './App.module.scss';
+import HomePage from './pages/Home';
 
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-
-const App = () => (
-  <div className={styles.app}>
-    <Header />
-    <div>Application started!</div>
-    <Footer />
-  </div>
-);
+const App = () => <HomePage />;
 
 export default App;

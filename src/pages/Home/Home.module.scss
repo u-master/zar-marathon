@@ -1,0 +1,15 @@
+@import '../../variables';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  font-size: 2em;
+  background: linear-gradient(180deg, $third 0%, $primary 100%);
+}
+
+.layout {
+  width: 100%;
+  padding-left: 157px;
+}
