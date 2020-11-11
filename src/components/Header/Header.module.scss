@@ -6,6 +6,7 @@
   align-items: center;
   height: 93px;
   box-shadow: 0px 4px 16px rgba(1, 28, 64, 0.2);
+  background-color: $third;
 }
 
 .wrap {
@@ -62,6 +63,15 @@
         width: 100%;
         opacity: 1;
       }
+    }
+  }
+}
+
+.active {
+  a {
+    &:after {
+      width: 100%;
+      opacity: 1;
     }
   }
 }

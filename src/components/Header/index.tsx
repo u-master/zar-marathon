@@ -1,55 +1,31 @@
 import React from 'react';
-// import cn from 'classnames';
+import { A, usePath } from 'hookrouter';
+import cn from 'classnames';
 import styles from './Header.module.scss';
+import { GENERAL_MENU } from '../../routes';
 
 import { ReactComponent as PokemonLogoSvg } from './assets/Logo.svg';
 
-interface IMenu {
-  id: number;
-  title: string;
-  link: string;
-}
-
-const MENU: IMenu[] = [
-  {
-    id: 1,
-    title: 'Home',
-    link: '',
-  },
-  {
-    id: 2,
-    title: 'Pokédex',
-    link: 'pokedex',
-  },
-  {
-    id: 3,
-    title: 'Legendaries',
-    link: '#Legendaries',
-  },
-  {
-    id: 4,
-    title: 'Documentation',
-    link: '#Documentation',
-  },
-];
-
-const Header = () => (
-  <header className={styles.root}>
-    <div className={styles.wrap}>
-      <div className={styles.logo}>
-        <PokemonLogoSvg />
+const Header = () => {
+  const path = usePath();
+  return (
+    <header className={styles.root}>
+      <div className={styles.wrap}>
+        <div className={styles.logo}>
+          <PokemonLogoSvg />
+        </div>
+        <nav>
+          <ul className={styles.menu}>
+            {GENERAL_MENU.map(({ title, link }) => (
+              <li className={cn(styles.menuitem, { [styles.active]: link === path })} key={title}>
+                <A href={link}>{title}</A>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
-      <nav>
-        <ul className={styles.menu}>
-          {MENU.map(({ id, title, link }) => (
-            <li className={styles.menuitem} key={id}>
-              <a href={link}>{title}</a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </div>
-  </header>
-);
+    </header>
+  );
+};
 
 export default Header;
