@@ -3,8 +3,6 @@ import cn from 'classnames';
 
 import styles from './PokemonCard.module.scss';
 
-import { IPokemon } from '../../pokemons';
-
 import Heading from '../Heading';
 
 interface IPokemonCardProps {

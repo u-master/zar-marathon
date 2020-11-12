@@ -1,5 +1,6 @@
 import React from 'react';
 import { navigate } from 'hookrouter';
+import { LinkEnum } from '../../routes';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -21,7 +22,7 @@ const HomePage = () => (
         <p>You can know the type of Pokemon, its strengths, disadvantages and abilities</p>
         <Button
           onClick={() => {
-            navigate('/pokedex');
+            navigate(LinkEnum.POKEDEX);
           }}
           size="normal">
           See pokemons
