@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import config from '../../config';
 
 import styles from './Pokedex.module.scss';
 
@@ -12,7 +13,7 @@ interface IPokemonsData {
   total: number;
 }
 
-const apiGetPokemons = 'http://zar.hosthot.ru/api/v1/pokemons';
+const apiGetPokemons = `${config.client.server.protocol}://${config.client.server.host}${config.client.endpoint.getPokemons.uri.pathname}`;
 
 const usePokemons = () => {
   const [data, setData] = useState<IPokemonsData>({ pokemons: [], total: 0 });
