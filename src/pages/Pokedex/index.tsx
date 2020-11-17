@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import config from '../../config';
+import React from 'react';
+import useData from '../../hook/getData';
 
 import styles from './Pokedex.module.scss';
 
@@ -13,35 +13,8 @@ interface IPokemonsData {
   total: number;
 }
 
-const apiGetPokemons = `${config.client.server.protocol}://${config.client.server.host}${config.client.endpoint.getPokemons.uri.pathname}`;
-
-const usePokemons = () => {
-  const [data, setData] = useState<IPokemonsData>({ pokemons: [], total: 0 });
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isError, setIsError] = useState<boolean>(false);
-
-  const getPokemons = async () => {
-    try {
-      const response = await fetch(apiGetPokemons);
-      const result = await response.json();
-      setData(result);
-    } catch (e) {
-      setIsError(true);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  getPokemons();
-  return { data, isLoading, isError };
-};
-
 const PokedexPage: React.FC = () => {
-  const {
-    data: { pokemons, total },
-    isLoading,
-    isError,
-  } = usePokemons();
+  const { data, isLoading, isError } = useData<IPokemonsData>('getPokemons');
 
   if (isLoading) return <div>Data Loading... Please wait!</div>;
 
@@ -52,10 +25,10 @@ const PokedexPage: React.FC = () => {
       <Header />
       <div className={styles.pokedexWrapper}>
         <Heading size="h2" className={styles.heading}>
-          {total} <span className={styles.bold}>Pokemons</span> for you to choose your favorite
+          {data?.total} <span className={styles.bold}>Pokemons</span> for you to choose your favorite
         </Heading>
         <div className={styles.cards}>
-          {pokemons.map((pokemon) => (
+          {data?.pokemons.map((pokemon) => (
             <PokemonCard pokemon={pokemon} key={pokemon.name} />
           ))}
         </div>
