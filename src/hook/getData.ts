@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import req from '../utils/request';
 
@@ -8,23 +8,30 @@ interface IData<DataType> {
   isError: boolean;
 }
 
-const useData: <DataType>(endpoint: string) => IData<DataType> = (endpoint: string) => {
+const useData: <DataType>(endpoint: string, query: object, deps: any[]) => IData<DataType> = (
+  endpoint: string,
+  query: object,
+  deps: any[] = [],
+) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
 
-  const getData = async () => {
-    try {
-      const result = await req(endpoint);
-      setData(result);
-    } catch (e) {
-      setIsError(true);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const result = await req(endpoint, query);
+        setData(result);
+      } catch (e) {
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  getData();
+    getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, deps);
   return { data, isLoading, isError };
 };
 
