@@ -1,5 +1,6 @@
 import React from 'react';
 import { navigate } from 'hookrouter';
+import { LinkEnum } from '../../routes';
 
 import Button from '../../components/Button';
 import Heading from '../../components/Heading';
@@ -17,7 +18,7 @@ const NotFoundPage: React.FC = () => (
     <Button
       color="yellow"
       onClick={() => {
-        navigate('/');
+        navigate(LinkEnum.HOME);
       }}>
       Return
     </Button>

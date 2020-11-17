@@ -4,9 +4,17 @@ import PokedexPage from './pages/Pokedex';
 import LegendariesPage from './pages/Legendaries';
 import DocumentationPage from './pages/Documentation';
 
+// eslint-disable-next-line no-shadow
+enum LinkEnum {
+  HOME = '/',
+  POKEDEX = '/pokedex',
+  LEGENDARIES = '/legendaries',
+  DOCUMENTATION = '/documentation',
+}
+
 interface IGeneralMenu {
   title: string;
-  link: string;
+  link: LinkEnum;
   component: () => JSX.Element;
 }
 
@@ -15,10 +23,10 @@ interface IAccMenu {
 }
 
 const GENERAL_MENU: IGeneralMenu[] = [
-  { title: 'Home', link: '/', component: () => <HomePage /> },
-  { title: 'Pokédex', link: '/pokedex', component: () => <PokedexPage /> },
-  { title: 'Legendaries', link: '/legendaries', component: () => <LegendariesPage /> },
-  { title: 'Documentation', link: '/documentation', component: () => <DocumentationPage /> },
+  { title: 'Home', link: LinkEnum.HOME, component: () => <HomePage /> },
+  { title: 'Pokédex', link: LinkEnum.POKEDEX, component: () => <PokedexPage /> },
+  { title: 'Legendaries', link: LinkEnum.LEGENDARIES, component: () => <LegendariesPage /> },
+  { title: 'Documentation', link: LinkEnum.DOCUMENTATION, component: () => <DocumentationPage /> },
 ];
 
 const routes = GENERAL_MENU.reduce(
@@ -27,4 +35,4 @@ const routes = GENERAL_MENU.reduce(
 );
 
 export default routes;
-export { GENERAL_MENU };
+export { GENERAL_MENU, LinkEnum };
