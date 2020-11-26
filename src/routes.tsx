@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import HomePage from './pages/Home';
 import PokedexPage from './pages/Pokedex';
 import LegendariesPage from './pages/Legendaries';
 import DocumentationPage from './pages/Documentation';
+import Pokemon, { PokemonProps } from './pages/Pokemon';
 
 // eslint-disable-next-line no-shadow
 enum LinkEnum {
@@ -10,16 +11,17 @@ enum LinkEnum {
   POKEDEX = '/pokedex',
   LEGENDARIES = '/legendaries',
   DOCUMENTATION = '/documentation',
+  POKEMON = '/pokedex/:id',
 }
 
 interface IGeneralMenu {
   title: string;
   link: LinkEnum;
-  component: () => JSX.Element;
+  component: (props: PropsWithChildren<any>) => JSX.Element;
 }
 
 interface IAccMenu {
-  [link: string]: () => JSX.Element;
+  [link: string]: (props: PropsWithChildren<any>) => JSX.Element;
 }
 
 const GENERAL_MENU: IGeneralMenu[] = [
@@ -29,7 +31,11 @@ const GENERAL_MENU: IGeneralMenu[] = [
   { title: 'Documentation', link: LinkEnum.DOCUMENTATION, component: () => <DocumentationPage /> },
 ];
 
-const routes = GENERAL_MENU.reduce(
+const SECOND_ROUTES: IGeneralMenu[] = [
+  { title: 'Pokemon', link: LinkEnum.POKEMON, component: ({ id }: PokemonProps) => <Pokemon id={id} /> },
+];
+
+const routes = [...GENERAL_MENU, ...SECOND_ROUTES].reduce(
   (acc: IAccMenu, { link, component }: IGeneralMenu) => ({ ...acc, [link]: component }),
   {},
 );

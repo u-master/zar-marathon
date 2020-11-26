@@ -66,3 +66,8 @@ interface IPokemon {
   order: number;
   weight: number;
 }
+
+interface IPokemonsData {
+  pokemons: IPokemon[];
+  total: number;
+}

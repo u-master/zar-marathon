@@ -8,19 +8,15 @@ interface IData<DataType> {
   isError: boolean;
 }
 
-const useData: <DataType>(endpoint: string, query: object, deps: any[]) => IData<DataType> = (
-  endpoint: string,
-  query: object,
-  deps: any[] = [],
-) => {
-  const [data, setData] = useState(null);
+const useData = <DataType>(endpoint: string, query: object, deps: any[] = []): IData<DataType> => {
+  const [data, setData] = useState<DataType | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
 
   useEffect(() => {
-    const getData = async () => {
+    const getData = async (): Promise<void> => {
       try {
-        const result = await req(endpoint, query);
+        const result = await req<DataType>(endpoint, query);
         setData(result);
       } catch (e) {
         setIsError(true);
