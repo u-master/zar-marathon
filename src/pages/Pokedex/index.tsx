@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import useData from '../../hook/getData';
+import useDebounce from '../../hook/useDebounce';
 
 import styles from './Pokedex.module.scss';
 
@@ -9,14 +10,10 @@ import Heading from '../../components/Heading';
 import PokemonCard from '../../components/PokemonCard';
 import Input from '../../components/Input';
 
-interface IPokemonsData {
-  pokemons: IPokemon[];
-  total: number;
-}
-
 const PokedexPage: React.FC = () => {
   const [searchValue, setSearchValue] = useState('');
-  const { data, isLoading, isError } = useData<IPokemonsData>('getPokemons', { name: searchValue }, [searchValue]);
+  const debounced = useDebounce(searchValue, 500);
+  const { data, isLoading, isError } = useData<IPokemonsData>('getPokemons', { name: searchValue }, [debounced]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);

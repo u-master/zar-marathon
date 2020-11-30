@@ -1,6 +1,8 @@
 import React from 'react';
 import cn from 'classnames';
 
+import toCapitalizeFirstLetter from '../../utils/toCapitalizeFirstLetter';
+
 import styles from './PokemonCard.module.scss';
 
 import Heading from '../Heading';
@@ -42,7 +44,7 @@ const PokemonCard: React.FC<IPokemonCardProps> = ({
     <div className={styles.root}>
       <div className={styles.infoWrap}>
         <Heading size="h3" className={styles.titleName}>
-          {name}
+          {toCapitalizeFirstLetter(name)}
         </Heading>
         <div className={styles.statWrap}>
           <div className={styles.statItem}>
